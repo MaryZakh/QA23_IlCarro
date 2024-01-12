@@ -102,4 +102,12 @@ public class HelperUser extends HelperBase {
         System.out.println("Wight screen --->" + size.getWidth());
 
     }
+
+    public void login(User user) {
+        openLoginForm();
+        fillLoginForm(user);
+        submit();
+        clickOkButton();
+
+    }
 }
