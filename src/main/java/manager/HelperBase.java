@@ -3,8 +3,6 @@ package manager;
 import org.openqa.selenium.*;
 
 
-
-
 public class HelperBase {
 
     WebDriver wd;
@@ -21,13 +19,22 @@ public class HelperBase {
         WebElement element = wd.findElement(locator);
         element.click();
         element.clear();
+        clearNew(element);
         if (text != null) {
             element.sendKeys(text);
         }
+    }
 
+    public void clearNew(WebElement element) {
+        element.sendKeys(" ");
+        element.sendKeys(Keys.BACK_SPACE);
 
     }
 
+    public void submit() {
+        wd.findElement(By.xpath("//button[@type='submit']"))
+                .click();
+    }
 
     public String getMessage() {
 
@@ -49,11 +56,6 @@ public class HelperBase {
             throw new RuntimeException(e);
         }
     }
-
-
-
-
-
 
 
 }

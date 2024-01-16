@@ -44,10 +44,7 @@ public class HelperUser extends HelperBase {
     }
 
 
-    public void submit() {
-        wd.findElement(By.xpath("//button[@type='submit']"))
-                .click();
-    }
+
 
     public void clickOkButton() {
         if(isElementPresent(By.xpath("//button[text()='Ok']")))
@@ -89,18 +86,20 @@ public class HelperUser extends HelperBase {
     }
 
 
-    public void checkPolicyXY(){
-        WebElement label = wd.findElement(By.cssSelector("label[for='terms-of-use']"));
-       Rectangle rect= label.getRect();
-       int w = rect.getWidth();
+    public void checkPolicyXY() {
+        if (!wd.findElement(By.id("terms-of-use")).isSelected()) {
+            WebElement label = wd.findElement(By.cssSelector("label[for='terms-of-use']"));
+            Rectangle rect = label.getRect();
+            int w = rect.getWidth();
 
-        int xOffSet = -w/2;
-        Actions actions = new Actions(wd);
-        actions.moveToElement(label, xOffSet,0).click().release().perform();
+            int xOffSet = -w / 2;
+            Actions actions = new Actions(wd);
+            actions.moveToElement(label, xOffSet, 0).click().release().perform();
 
-        Dimension size = wd.manage().window().getSize();
-        System.out.println("Wight screen --->" + size.getWidth());
+            Dimension size = wd.manage().window().getSize();
+            System.out.println("Wight screen --->" + size.getWidth());
 
+        }
     }
 
     public void login(User user) {
