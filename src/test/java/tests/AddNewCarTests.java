@@ -15,7 +15,7 @@ public class AddNewCarTests extends TestBase {
     public void preCondition() {
         if (!app.getHelperUser().isLogged()) {
             app.getHelperUser().login(new User().withEmail("margo@gmail.com").withPassword("Mmar123456$"));
-
+            logger.info("Logout complete");
         }
 
     }
@@ -35,6 +35,7 @@ public class AddNewCarTests extends TestBase {
                 .price(50)
                 .about("Very nice car")
                 .build();
+        logger.info("Test start with test data --->" + car.toString());
         app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
         app.getHelperCar().submit();
@@ -59,6 +60,7 @@ public class AddNewCarTests extends TestBase {
                 .carRegNumber("986-326-" + i)
                 .price(50)
                 .build();
+        logger.info("Test start with test data --->" + car.toString());
         app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
         app.getHelperCar().attachPhoto("D:\\QA_23\\QA23_IlCarro\\02-bugatti-cd-nardo-testing.jpg");

@@ -23,7 +23,7 @@ public class LoginTests extends TestBase {
         user.setEmail("marga@gmail.com");
         user.setPassword("Mmar123456$");
 */
-
+        logger.info("Test start with test data --->" + user.toString());
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm(user);
         app.getHelperUser().submit();
@@ -36,6 +36,7 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginSuccess() {
+        logger.info("Test start with test data --->/n" + "email : 'marga@gmail.com' & password : 'Mmar123456$'");
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm("marga@gmail.com", "Mmar123456$");
         app.getHelperUser().submit();
@@ -48,6 +49,7 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginSuccessModel() {
+        logger.info("Test start with test data --->/n" + "email : 'marga@gmail.com' & password : 'Mmar123456$'");
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm("marga@gmail.com", "Mmar123456$");
         app.getHelperUser().submit();
@@ -61,6 +63,7 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginWrongEmail(){
+        logger.info("Test negative check if it possible to login with wrong format email ");
         User user = new User().withEmail("margagmail.com").withPassword("Mmar123456$");
 
         app.getHelperUser().openLoginForm();
@@ -72,6 +75,7 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginWrongPassword(){
+        logger.info("Test negative check if it possible to login with wrong format password ");
         User user = new User().withEmail("marga@gmail.com").withPassword("Mmar1234");
 
         app.getHelperUser().openLoginForm();
@@ -84,6 +88,7 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginUnregisteredUser(){
+        logger.info("Test negative check if it possible to login with valid format data unregistered user ");
         User user = new User().withEmail("duck@gmail.com").withPassword("Ddag123456$");
 
         app.getHelperUser().openLoginForm();

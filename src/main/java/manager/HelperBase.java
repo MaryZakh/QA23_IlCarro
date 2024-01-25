@@ -1,9 +1,12 @@
 package manager;
 
 import org.openqa.selenium.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class HelperBase {
+    Logger logger = LoggerFactory.getLogger(HelperBase.class);
 
     WebDriver wd;
 
