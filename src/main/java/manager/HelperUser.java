@@ -27,12 +27,7 @@ public class HelperUser extends HelperBase {
     }
 
 
-    boolean isElementPresent(By locator) {
-        return wd.findElements(locator).size() > 0;
-//        List<WebElement> list = wd.findElements(locator);
-//        return list.size() > 0;
 
-    }
 
     public boolean isLogged() {
         return

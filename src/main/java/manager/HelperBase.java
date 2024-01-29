@@ -1,8 +1,12 @@
 package manager;
 
+import com.google.common.io.Files;
 import org.openqa.selenium.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class HelperBase {
@@ -58,6 +62,37 @@ public class HelperBase {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    boolean isElementPresent(By locator) {
+        return wd.findElements(locator).size() > 0;
+//        List<WebElement> list = wd.findElements(locator);
+//        return list.size() > 0;
+
+    }
+
+
+    public void getScreen(String link) {
+        TakesScreenshot takesScreenshot = (TakesScreenshot) wd;
+        File tmp = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        try {
+            Files.copy(tmp, new File(link));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void clearTextBox(By locator){
+        WebElement el = wd.findElement(locator);
+        String os = System.getProperty("os.name");
+        //System.out.println(os);
+        if(os.startsWith("Win")) {
+            el.sendKeys(Keys.CONTROL, "a");
+        }else{
+            el.sendKeys(Keys.COMMAND,"a");
+        }
+        el.sendKeys(Keys.DELETE);
     }
 
 
