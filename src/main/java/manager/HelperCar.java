@@ -76,6 +76,7 @@ public class HelperCar extends HelperBase {
 
     private void typeCity(String city) {
         type(By.id("city"), city);
+        //pause(500);
         click(By.cssSelector("div.pac-item"));
     }
 
@@ -107,7 +108,7 @@ public class HelperCar extends HelperBase {
 
         click(By.xpath("//div[text()=' " + from.getDayOfMonth() + " ']"));
 
-        diffMonth = to.getMonthValue() - from.getDayOfMonth();
+        diffMonth = to.getMonthValue() - from.getMonthValue();
         if (diffMonth > 0) {
             clickNextMonthButton(diffMonth);
         }
@@ -162,5 +163,19 @@ public class HelperCar extends HelperBase {
 
     public void navigateByLogo() {
         click(By.cssSelector("a.logo"));
+    }
+
+    public void searchNotValidPeriod(String city, String dateFrom, String dateTo) {
+        clearTextBox(By.id("city"));
+        typeCity(city);
+        clearTextBox(By.id("dates"));
+        type(By.id("dates"), dateFrom+" - "+dateTo);
+        click(By.cssSelector("div.cdk-overlay-backdrop"));
+    }
+
+    public boolean isErrorDisplayed(String message) {
+        String text = wd.findElement(By.className("ng-star-inserted")).getText();
+        return text.equals(message);
+
     }
 }

@@ -12,7 +12,7 @@ public void preCondition(){
 }
     @Test
     public void searchCurrentMonthSuccess(){
-        app.getHelperCar().searchCurrentMonth("Tel Aviv, Israel", "1/29/2024", "1/30/2024");
+        app.getHelperCar().searchCurrentMonth("Tel Aviv, Israel", "2/2/2024", "2/25/2024");
         app.getHelperCar().getScreen("src/test/screenshots/currentMonth.png");
         app.getHelperCar().submit();
         Assert.assertTrue(app.getHelperCar().isListOfCarsAppeared());
@@ -34,6 +34,14 @@ public void preCondition(){
         app.getHelperCar().submit();
         Assert.assertTrue(app.getHelperCar().isListOfCarsAppeared());
 
+    }
+
+    @Test
+    public void negativeSearch(){
+    app.getHelperCar().searchNotValidPeriod("Tel Aviv Israel", "1/10/2024", "10/10/2024");
+    app.getHelperCar().submit();
+    Assert.assertTrue(app.getHelperCar().isYallaButtonNotActive());
+    Assert.assertTrue(app.getHelperCar().isErrorDisplayed("You can't pick date before today"));
     }
 
 
