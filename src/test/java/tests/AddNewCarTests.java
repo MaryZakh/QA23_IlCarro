@@ -115,7 +115,7 @@ public class AddNewCarTests extends TestBase {
         app.getHelperCar().fillCarFormEmptyFuel(car);
         app.getHelperCar().attachPhoto("D:\\QA_23\\QA23_IlCarro\\02-bugatti-cd-nardo-testing.jpg");
         app.getHelperCar().submit();
-       //Assert.assertEquals(app.getHelperUser().getErrorText(), "Wrong address");
+       Assert.assertEquals(app.getHelperUser().getErrorText(), "Fuel is required");
         Assert.assertTrue(app.getHelperUser().isYallaButtonNotActive());
 
 
