@@ -32,6 +32,18 @@ public class HelperCar extends HelperBase {
         type(By.id("price"), car.getPrice() + "");
         type(By.id("about"), car.getAbout());
     }
+    public void fillCarFormEmptyFuel(Car car) {
+        typeLocation(car.getLocation());
+        type(By.id("make"), car.getManufacture());
+        type(By.id("model"), car.getModel());
+        type(By.id("year"), car.getYear());
+        selectEmptyFuel(By.id("fuel"), car.getFuel());
+        type(By.id("seats"), String.valueOf(car.getSeats()));
+        type(By.id("class"), car.getCarClass());
+        type(By.id("serialNumber"), car.getCarRegNumber());
+        type(By.id("price"), car.getPrice() + "");
+        type(By.id("about"), car.getAbout());
+    }
 
     private void select(By locator, String option) {
         Select select = new Select(wd.findElement(locator));
@@ -42,11 +54,22 @@ public class HelperCar extends HelperBase {
 //        select.selectByVisibleText(" Gas ");
 
     }
+    private void selectEmptyFuel(By locator, String option) {
+        click(By.id("fuel"));
+
+
+    }
 
 
     private void typeLocation(String location) {
         type(By.id("pickUpPlace"), location);
         click(By.cssSelector("div.pac-item"));
+
+    }
+
+    private void typeEmptyLocation(String location) {
+        type(By.id("pickUpPlace"), location);
+
     }
 
     public void returnToHome() {
@@ -151,10 +174,10 @@ public class HelperCar extends HelperBase {
 
         //***to
         diffYear = to.getYear() - from.getYear();
-        if (diffYear==0){
-            diffMonth=to.getMonthValue()-from.getMonthValue();
-        }else {
-            diffMonth = 12-from.getMonthValue()+to.getMonthValue();
+        if (diffYear == 0) {
+            diffMonth = to.getMonthValue() - from.getMonthValue();
+        } else {
+            diffMonth = 12 - from.getMonthValue() + to.getMonthValue();
         }
         clickNextMonthButton(diffMonth);
         locator = String.format("//div[text()=' %s ']", to.getDayOfMonth());
@@ -169,7 +192,7 @@ public class HelperCar extends HelperBase {
         clearTextBox(By.id("city"));
         typeCity(city);
         clearTextBox(By.id("dates"));
-        type(By.id("dates"), dateFrom+" - "+dateTo);
+        type(By.id("dates"), dateFrom + " - " + dateTo);
         click(By.cssSelector("div.cdk-overlay-backdrop"));
     }
 
@@ -177,5 +200,23 @@ public class HelperCar extends HelperBase {
         String text = wd.findElement(By.className("ng-star-inserted")).getText();
         return text.equals(message);
 
+    }
+
+    public void fillCarEmptyLocations(Car car) {
+        typeEmptyLocation(car.getLocation());
+        type(By.id("make"), car.getManufacture());
+        type(By.id("model"), car.getModel());
+        type(By.id("year"), car.getYear());
+        select(By.id("fuel"), car.getFuel());
+        type(By.id("seats"), String.valueOf(car.getSeats()));
+        type(By.id("class"), car.getCarClass());
+        type(By.id("serialNumber"), car.getCarRegNumber());
+        //type(By.id("price"),String.valueOf(car.getPrice())) ;
+        type(By.id("price"), car.getPrice() + "");
+        type(By.id("about"), car.getAbout());
+    }
+
+    public boolean isButtonReturnToHomePresent() {
+        return isElementPresent(By.xpath("//button[text()='Search cars']"));
     }
 }

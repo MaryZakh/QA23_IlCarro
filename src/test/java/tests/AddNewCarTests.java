@@ -22,7 +22,7 @@ public class AddNewCarTests extends TestBase {
 
     @Test
     public void addNewCarSuccessAll() {
-        int i = new Random().nextInt(1000) + 1000;
+        int i = new Random().nextInt(1000) + 10000;
         Car car = Car.builder()
                 .location("Tel Aviv, Israel")
                 .manufacture("Mazda")
@@ -71,10 +71,62 @@ public class AddNewCarTests extends TestBase {
 
     }
 
+    @Test
+    public void addNewCarEmptyLocations() {
+        int i = new Random().nextInt(1000) + 1000;
+        Car car = Car.builder()
+                .location("")
+                .manufacture("KIA")
+                .model("Sportage")
+                .year("2020")
+                .fuel("Petrol")
+                .seats(4)
+                .carClass("C")
+                .carRegNumber("986-326-" + i)
+                .price(50)
+                .build();
+        logger.info("Test start with test data --->" + car.toString());
+        app.getHelperCar().openCarForm();
+        app.getHelperCar().fillCarEmptyLocations(car);
+        app.getHelperCar().attachPhoto("D:\\QA_23\\QA23_IlCarro\\02-bugatti-cd-nardo-testing.jpg");
+        app.getHelperCar().submit();
+        Assert.assertEquals(app.getHelperUser().getErrorText(), "Wrong address");
+        Assert.assertTrue(app.getHelperUser().isYallaButtonNotActive());
+
+
+    }
+
+    @Test
+    public void addNewCarEmptyFuel() {
+        int i = new Random().nextInt(1000) + 1000;
+        Car car = Car.builder()
+                .location("Tel Aviv, Israel")
+                .manufacture("KIA")
+                .model("Sportage")
+                .year("2020")
+                .fuel("")
+                .seats(4)
+                .carClass("C")
+                .carRegNumber("986-326-" + i)
+                .price(50)
+                .build();
+        logger.info("Test start with test data --->" + car.toString());
+        app.getHelperCar().openCarForm();
+        app.getHelperCar().fillCarFormEmptyFuel(car);
+        app.getHelperCar().attachPhoto("D:\\QA_23\\QA23_IlCarro\\02-bugatti-cd-nardo-testing.jpg");
+        app.getHelperCar().submit();
+       //Assert.assertEquals(app.getHelperUser().getErrorText(), "Wrong address");
+        Assert.assertTrue(app.getHelperUser().isYallaButtonNotActive());
+
+
+    }
 
     @AfterMethod
     public void postCondition() {
-        app.getHelperCar().returnToHome();
+        if(app.getHelperCar().isButtonReturnToHomePresent()) {
+            app.getHelperCar().returnToHome();
+        }else
+            app.getHelperCar().navigateByLogo();
     }
 
 

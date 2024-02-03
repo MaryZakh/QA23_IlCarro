@@ -1,0 +1,7 @@
+14:02:15.764 INFO  manager.ApplicationManager - All tests run in Chrome Browser
+14:02:16.816 INFO  manager.ApplicationManager - The link --> https://ilcarro.web.app/search
+14:02:23.451 INFO  tests.TestBase - Logout complete
+14:02:23.464 INFO  tests.TestBase - Test start with test data --->Car(location=Tel Aviv, Israel, manufacture=KIA, model=Sportage, year=2020, fuel=, seats=4, carClass=C, carRegNumber=986-326-1612, price=50.0, about=null)
+14:02:32.343 INFO  tests.TestBase - Test start with test data --->Car(location=, manufacture=KIA, model=Sportage, year=2020, fuel=Petrol, seats=4, carClass=C, carRegNumber=986-326-1502, price=50.0, about=null)
+14:02:40.105 INFO  tests.TestBase - Test start with test data --->Car(location=Tel Aviv, Israel, manufacture=KIA, model=Sportage, year=2020, fuel=Petrol, seats=4, carClass=C, carRegNumber=986-326-1488, price=50.0, about=null)
+14:02:43.452 INFO  tests.TestBase - Test start with test data --->Car(location=Tel Aviv, Israel, manufacture=Mazda, model=M3, year=2022, fuel=Petrol, seats=4, carClass=C, carRegNumber=678-900-10079, price=50.0, about=Very nice car)

@@ -1,0 +1,4 @@
+13:26:34.071 INFO  manager.ApplicationManager - All tests run in Chrome Browser
+13:26:35.330 INFO  manager.ApplicationManager - The link --> https://ilcarro.web.app/search
+13:26:42.085 INFO  tests.TestBase - Logout complete
+13:26:42.095 INFO  tests.TestBase - Test start with test data --->Car(location=, manufacture=KIA, model=Sportage, year=2020, fuel=Petrol, seats=4, carClass=C, carRegNumber=986-326-1682, price=50.0, about=null)
