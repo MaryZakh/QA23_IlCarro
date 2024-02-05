@@ -26,3 +26,18 @@ dependencies {
 test {
     useTestNG()
 }
+
+
+task tests(type:Test) {
+    useTestNG() {
+        def suite = System.getProperty('suite', '')
+        if (suite.equals('login')) {
+            suites 'src/test/resources/login.xml'
+        } else {
+            suites 'src/test/resources/testng.xml'
+        }
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+}
